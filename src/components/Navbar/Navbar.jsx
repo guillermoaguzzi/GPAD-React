@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 import "./Navbar.css"
 import NavbarList from "../NavbarList/NavbarList"
 
@@ -14,11 +16,21 @@ const Navbar = () => {
                     {/* PAGES */}
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav">
-                        <NavbarList title="DEALS" />
+                        {/* <NavbarList title="DEALS" /> */}
+                        <Link to="/">
+                        <NavbarList title="ALL" />
+                        </Link>
+                        <Link to="/category/production">
                         <NavbarList title="PRODUCTION" />
+                        </Link>
+                        <Link to="/category/post-production">
                         <NavbarList title="POST-PRODUCTION" />
-                        <NavbarList title="TRANSCRIPTION" />
-                        <NavbarList title="MEDIA" />
+                        </Link>
+                        <Link to="/category/others">
+                        <NavbarList title="OTHERS" />
+                        </Link>
+                        {/* <NavbarList title="TRANSCRIPTION" />
+                        <NavbarList title="MEDIA" /> */}
                         </ul>
                     </div>
                 </div>

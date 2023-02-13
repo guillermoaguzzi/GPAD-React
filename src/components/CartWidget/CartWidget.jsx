@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import "./CartWidget.css"
 import { IconContext } from "react-icons";
 import { AiOutlineShoppingCart } from 'react-icons/ai';
@@ -5,6 +7,7 @@ import { AiOutlineShoppingCart } from 'react-icons/ai';
 const CartWidget = () => {
   return (
     <div>
+      <Link to="/Cart">
       <IconContext.Provider
         value={{ color: 'white', size: '30px' }}
       >
@@ -21,6 +24,7 @@ const CartWidget = () => {
           <AiOutlineShoppingCart />
         </div>
       </IconContext.Provider>
+      </Link>
     </div>
   );
 }
