@@ -20,9 +20,21 @@ nav {
     margin-top: 1rem;
 }
 
-
-
 .pages {
     color: white;
     text-decoration: none;
+}
+
+.navbar-item {
+        margin-left: 1rem;
+        color: white;
+        list-style: none;
+        text-decoration: none;
+}
+
+.active-navbar {
+    margin-left: 1rem;
+    color: #fe9900;
+    list-style: none;
+    font-weight: bold;
 }
