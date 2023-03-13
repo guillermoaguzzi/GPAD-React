@@ -1,0 +1,18 @@
+.serviceImg {
+    width: 25%;
+    height: 15%;
+}
+
+.hidden{
+    display: none;
+}
+
+.visible {
+    width: 150px;
+    margin-top: 15px;
+    border-radius: 5px;
+    border-color: black;
+    background-color: #fe9900;
+    display: block;
+    margin-top: 10px;
+}

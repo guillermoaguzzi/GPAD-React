@@ -1,0 +1,119 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.subContainers {
+    background-color: #fe9900;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.subContainersWhite {
+    background-color: white;
+    height: 100vh;
+}
+
+.subContainersOrange {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    width: 100%;
+    height: 100vh;
+    margin-left: 25px;
+}
+
+.cartTitle {
+    margin-top: 25px;
+    text-align: center;
+}
+
+/* .subContainerLeft {
+    background-color: #fe9900;
+} */
+
+.noData {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border-style: dashed;
+    border-radius: 10px;
+    padding-left: 50px;
+    padding-bottom: 15px;
+    padding-top: 10px;
+    margin-right: 50px;
+    margin-top: 15px;
+}
+
+.subData {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    
+}
+
+.infoData {
+margin-left: 20%;
+font-size: 60%;
+}
+
+.infoValues {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    margin-left: 20%;
+    font-size: 60%;
+
+}
+
+.serviceTitle {
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.properties, .values {
+    font-size: 20px;
+}
+
+
+.noDataImg {
+    margin-top: 20px;
+    width: 50%;
+}
+
+.noDataText {
+    margin-top: 20px;
+}
+
+.serviceImg {
+    width: 25%;
+    height: 15%;
+}
+
+.removeById, .toMainButton {
+    width: 150px;
+    margin-top: 15px;
+    border-radius: 5px;
+    border-color: black;
+    background-color: #fe9900;
+}
+
+.Totals {
+    font-size: 10px;
+    text-decoration: underline;
+}

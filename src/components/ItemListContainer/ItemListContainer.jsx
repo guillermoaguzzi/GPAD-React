@@ -3,33 +3,49 @@ import { useParams } from "react-router-dom";
 
 import { services } from "../../ServicesMock";
 import ItemList from "../ItemList/ItemList";
-/* import "./ItemListContainer.css" */
+import FadeLoader from "react-spinners/FadeLoader";
+
+const styles = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "red",
+};
 
 const ItemListContainer = () => {
+  const { categoryName } = useParams();
 
-  const {categoryName} = useParams()
+  const [items, setItems] = useState([]);
 
-  const [items, setItems] = useState([])
-
-  
-  useEffect( ()=>{
-
-    const servicesFiltered = services.filter( (service)=> service.category === categoryName)
+  useEffect(() => {
+    const servicesFiltered = services.filter(
+      (service) => service.category === categoryName
+    );
 
     const task = new Promise((resolve, reject) => {
-        resolve( categoryName ? servicesFiltered : services )
+      setTimeout(() => {
+        resolve(categoryName ? servicesFiltered : services);
+      }, 500);
     });
-  
-    task
-      .then((res) => {
-        setItems( res );
-      })
-  }, [categoryName])
+
+    task.then((res) => {
+      setItems(res);
+    });
+  }, [categoryName]);
 
   return (
-    <>
-      <ItemList items={ items } />
-    </>
+    <div>
+      {items.length < 1 ? (
+        <FadeLoader
+          color={"#fe9900"}
+          cssOverride={styles}
+          size={150}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      ) : (
+        <ItemList items={items} />
+      )}
+    </div>
   );
 };
 
