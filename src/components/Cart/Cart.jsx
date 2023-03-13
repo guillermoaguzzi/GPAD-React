@@ -1,15 +1,19 @@
 import "./Cart.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CartContext } from "../../context/CartContext";
 import Swal from "sweetalert2";
 import NoData from "../../assets/image/noData.svg";
 import { Link } from "react-router-dom";
+import FormCheckOut from "../FormCheckOut/FormCheckOut";
+import FinishBuy from "../FinishBuy/FinishBuy";
 
 const Cart = () => {
 const { cart, clearCart, deleteServiceById, getTotalItems, getTotalPrice } =
 useContext(CartContext);
 
-console.log(cart);
+const [buy, setBuy] = useState(false)
+const [orderId, setOrderId] = useState(null);
+
 
 const clearCartAlert = () => {
 Swal.fire({
@@ -30,10 +34,18 @@ Swal.fire({
 });
 };
 
+const total = getTotalPrice();
+
+if (orderId) {
+    return (
+    <FinishBuy orderId={orderId} />
+    );
+}
+
 return (
 <div className="container">
+    {!buy ? (
     <div className="subContainer">
-    
     {
         cart.length < 1 && <div className="noData">
         <h1 className="cartTitle">CART</h1>
@@ -75,11 +87,16 @@ return (
     <div className="subContainersOrange">
     <h3 className="totals">Total Products: {getTotalItems()}</h3>
     <h3 className="totals">Total Budget: ${getTotalPrice()}</h3>
+    <button className="checkoutButton" onClick={() => setBuy(true)}>Go to checkout!</button>
     <button onClick={() => clearCartAlert()}>Clear cart</button>
     </div>
         </div>
     }
     </div>
+    ) : (
+    <FormCheckOut cart={cart} total={total} clearCart={clearCart} setOrderId={setOrderId}/>
+        )}
+    
 </div>
 );
 };

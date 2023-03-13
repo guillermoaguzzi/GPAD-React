@@ -57,7 +57,6 @@ const ItemListContainer = () => {
 
   }, [categoryName]);
 
-  console.log(items)
 
   return (
     <div>

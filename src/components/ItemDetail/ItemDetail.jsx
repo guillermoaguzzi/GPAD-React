@@ -38,8 +38,6 @@ import Swal from 'sweetalert2'
         };
 
         const quantity = getQuantityById(service.id)
-        console.log(quantity)
-
 
 
     return (
