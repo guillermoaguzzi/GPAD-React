@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
-import { services } from "../../ServicesMock";
 import ItemList from "../ItemList/ItemList";
 import FadeLoader from "react-spinners/FadeLoader";
+import { db } from "../../firebaseconfig";
+import { getDocs, collection, query, where } from "firebase/firestore"
 
 const styles = {
   display: "block",
@@ -12,25 +12,52 @@ const styles = {
 };
 
 const ItemListContainer = () => {
+
   const { categoryName } = useParams();
 
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    const servicesFiltered = services.filter(
-      (service) => service.category === categoryName
-    );
 
-    const task = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(categoryName ? servicesFiltered : services);
-      }, 500);
-    });
+    const itemCollection = collection ( db , "services" )
 
-    task.then((res) => {
-      setItems(res);
-    });
+    if(categoryName){
+
+      const q = query ( itemCollection, where("category", "==", categoryName ) )
+
+      getDocs(q)
+      .then((res)=> {
+        const services = res.docs.map( service => {
+          return {
+            ...service.data(),
+            id: service.id
+          }
+        } )
+  
+        setItems (services)
+      })
+      .catch((err)=> console.log("error: " + err))
+    
+    }else{
+
+      getDocs(itemCollection)
+      .then((res)=> {
+        const services = res.docs.map( service => {
+          return {
+            ...service.data(),
+            id: service.id
+          }
+        } )
+  
+        setItems (services)
+      })
+      .catch((err)=> console.log("error: " + err))
+
+    }
+
   }, [categoryName]);
+
+  console.log(items)
 
   return (
     <div>

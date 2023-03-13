@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
-import { services } from "../../ServicesMock";
 import ItemDetail from '../ItemDetail/ItemDetail';
+import { db } from '../../firebaseconfig';
+import { getDoc, collection, doc } from "firebase/firestore"
+
 
 const ItemDetailContainer = () => {
 
@@ -11,11 +13,19 @@ const ItemDetailContainer = () => {
 
     useEffect( ()=>{
 
-    let serviceSelected = services.find( serv => serv.id === +id )
+        const itemCollection = collection ( db , "services" )
+        const ref = doc(itemCollection, id)
 
-        setService( serviceSelected )
+        getDoc(ref)
+        .then((res)=> {
+            setService({
+                ...res.data(),
+                id: res.id
+            })
+        })
+        .catch( err => console.log(err))
 
-    },[])
+    },[ id ])
 
 
 return (
