@@ -1,31 +1,34 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { CartContext } from '../../context/CartContext'
 import ItemCount from '../ItemCount/ItemCount'
 
     const ItemDetail = ({service}) => {  
 
-        const onAdd = (ItemQuantity)=>{
+    const { addToCart, getQuantityById } = useContext( CartContext )
+
+    const onAdd = (ItemQuantity)=>{
 
             const obj = {
-                title: service.title,
-                price: service.price,
-                img: service.img,
+                ...service,
                 quantity: ItemQuantity
             }
 
-            console.log(obj)
+            addToCart(obj)
+        };
 
-        }
+        const quantity = getQuantityById(service.id)
+        console.log(quantity)
 
 
 
-        return (
+    return (
+        <div>
             <div>
-                <div>
-                    <h1>{service.title}</h1>
-                </div>
-                <ItemCount stock={service.stock} initial={1} onAdd={onAdd}/>
+                <h1>{service.title}</h1>
             </div>
-        )
+            <ItemCount stock={service.stock} initial={quantity} onAdd={onAdd}/>
+        </div>
+    )
 }
 
 export default ItemDetail
