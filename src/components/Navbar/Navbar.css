@@ -1,0 +1,40 @@
+/*Header*/
+
+nav {
+    color: white;
+    background-color: #fe9900;
+    width: 100%;
+    list-style-type: none;
+    position: fixed;
+    top: 0rem;
+    z-index: 2;
+}
+
+.logo {
+    height: 4rem;
+    width: 4rem;
+    margin: 1rem;
+}
+
+.nameAndSloganHome {
+    margin-top: 1rem;
+}
+
+.pages {
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-item {
+        margin-left: 1rem;
+        color: white;
+        list-style: none;
+        text-decoration: none;
+}
+
+.active-navbar {
+    margin-left: 1rem;
+    color: #fe9900;
+    list-style: none;
+    font-weight: bold;
+}
