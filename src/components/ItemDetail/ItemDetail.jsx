@@ -39,18 +39,18 @@ import Swal from 'sweetalert2'
 
         const quantity = getQuantityById(service.id)
 
-
+        
     return (
-        <div>
-            <div>
-                <h1>{service.title}</h1>
-                <p>{service.description}</p>
-                <img className="serviceImg" src={service.img} alt="" />
+        <div id="ItDet">
+            <div id="ItDetCard">
+                <h1 id="ItDetTitle">{service.title}</h1>
+                <img id="ItDetServiceImg" src={service.img} alt="" />
+                <p id="ItDetDescription">{service.description}</p>
+                <ItemCount stock={service.stock} initial={quantity} onAdd={onAdd}/>
+                <Link to="/Cart">
+                <button type="button" id="button" className="toMainButton, hidden">Go to Cart!</button>
+                </Link>
             </div>
-            <ItemCount stock={service.stock} initial={quantity} onAdd={onAdd}/>
-            <Link to="/Cart">
-            <button type="button" id="button" className="toMainButton, hidden">Go to Cart!</button>
-            </Link>
         </div>
     )
 }

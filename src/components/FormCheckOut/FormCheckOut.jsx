@@ -1,3 +1,4 @@
+import "./FormCheckOut.css";
 import { useState } from "react";
 
 import { serverTimestamp,  addDoc, collection, updateDoc, doc,  } from "firebase/firestore";
@@ -40,12 +41,14 @@ const handleSubmit = (e) => {
 
 return (
     <div>
-    <form onSubmit={handleSubmit}>
-        <input type="text" placeholder="Ingrese su email" name="email" onChange={(e) => setUserInfo({ ...userInfo, email: e.target.value })}
+        
+    <form id="Form" onSubmit={handleSubmit}>
+        <h2 id="formElement">Enter your information!</h2>
+        <input id="formElement" type="text" placeholder="Write your email" name="email" onChange={(e) => setUserInfo({ ...userInfo, email: e.target.value })}
         />
-        <input type="text" placeholder="Ingrese su telefono" name="phone" onChange={(e) => setUserInfo({ ...userInfo, phone: e.target.value })}
+        <input id="formElement" type="text" placeholder="Write your phone number" name="phone" onChange={(e) => setUserInfo({ ...userInfo, phone: e.target.value })}
         />
-        <button>BUY</button>
+        <button id="formElement">BUY</button>
     </form>
     </div>
 );

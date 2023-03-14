@@ -1,3 +1,4 @@
+import "./ItemCount.css";
 import { useEffect, useState } from "react";
 
 const ItemCount = ({ stock, initial=1, onAdd }) => {
@@ -20,12 +21,15 @@ const ItemCount = ({ stock, initial=1, onAdd }) => {
     };
 
     return (
-    <div>
-        <h1>{counter}</h1>
-
-        <button onClick={add}>Add</button>
-        <button onClick={substract}>Substract</button>
-        <button onClick={() => onAdd(counter)}>Add to Cart</button>
+    <div id="ItCntContainer">
+        <div id="ItCntNumberContainer">
+        <h1 id="ItCntCounter">{counter}</h1>
+        </div>
+        <div class="grid-container">
+        <button class="grid-item" onClick={add}>Add</button>
+        <button class="grid-item" onClick={() => onAdd(counter)}>Add to Cart</button>
+        <button class="grid-item" onClick={substract}>Remove</button>
+        </div>
     </div>
     );
 };

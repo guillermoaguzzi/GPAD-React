@@ -43,7 +43,7 @@ if (orderId) {
 }
 
 return (
-<div className="container">
+<div>
     {!buy ? (
     <div className="subContainer">
     {
@@ -85,10 +85,10 @@ return (
             })}
         </div>
     <div className="subContainersOrange">
-    <h3 className="totals">Total Products: {getTotalItems()}</h3>
-    <h3 className="totals">Total Budget: ${getTotalPrice()}</h3>
-    <button className="checkoutButton" onClick={() => setBuy(true)}>Go to checkout!</button>
-    <button onClick={() => clearCartAlert()}>Clear cart</button>
+        <h3 className="totals1">Total Products: {getTotalItems()}</h3>
+        <h3 className="totals2">Total Budget: ${getTotalPrice()}</h3>
+        <button className="checkoutButton" onClick={() => setBuy(true)}>Go to checkout!</button>
+        <button className="clearCartButton" onClick={() => clearCartAlert()}>Clear cart</button>
     </div>
         </div>
     }
