@@ -1,0 +1,17 @@
+#Form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#formElement {
+    text-align: center;
+    margin-top: 20px;
+    border-radius: 5px;
+    width: 60%;
+}
+
+::placeholder {
+    text-align: center; 
+}

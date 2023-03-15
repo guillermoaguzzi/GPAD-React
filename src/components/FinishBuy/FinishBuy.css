@@ -1,0 +1,30 @@
+#container, {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+}
+
+#BtnBuyParent {
+    text-align: center;
+}
+
+#BtnBuy {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    width: 20%;
+    margin-left: 40%;
+    margin-right: 40%;
+    border-radius: 5px;
+    margin-top: 25px;
+    background-color: #FF9900;
+}
+
+
+#text {
+    text-align: center;
+    margin-top: 25px;
+}

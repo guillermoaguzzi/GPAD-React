@@ -1,35 +1,77 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
-import { services } from "../../ServicesMock";
 import ItemList from "../ItemList/ItemList";
-/* import "./ItemListContainer.css" */
+import FadeLoader from "react-spinners/FadeLoader";
+import { db } from "../../firebaseconfig";
+import { getDocs, collection, query, where } from "firebase/firestore"
+
+const styles = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "red",
+};
 
 const ItemListContainer = () => {
 
-  const {categoryName} = useParams()
+  const { categoryName } = useParams();
 
-  const [items, setItems] = useState([])
+  const [items, setItems] = useState([]);
 
+  useEffect(() => {
+
+    const itemCollection = collection ( db , "services" )
+
+    if(categoryName){
+
+      const q = query ( itemCollection, where("category", "==", categoryName ) )
+
+      getDocs(q)
+      .then((res)=> {
+        const services = res.docs.map( service => {
+          return {
+            ...service.data(),
+            id: service.id
+          }
+        } )
   
-  useEffect( ()=>{
-
-    const servicesFiltered = services.filter( (service)=> service.category === categoryName)
-
-    const task = new Promise((resolve, reject) => {
-        resolve( categoryName ? servicesFiltered : services )
-    });
-  
-    task
-      .then((res) => {
-        setItems( res );
+        setItems (services)
       })
-  }, [categoryName])
+      .catch((err)=> console.log("error: " + err))
+    
+    }else{
+
+      getDocs(itemCollection)
+      .then((res)=> {
+        const services = res.docs.map( service => {
+          return {
+            ...service.data(),
+            id: service.id
+          }
+        } )
+  
+        setItems (services)
+      })
+      .catch((err)=> console.log("error: " + err))
+
+    }
+
+  }, [categoryName]);
+
 
   return (
-    <>
-      <ItemList items={ items } />
-    </>
+    <div>
+      {items.length < 1 ? (
+        <FadeLoader
+          color={"#fe9900"}
+          cssOverride={styles}
+          size={150}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      ) : (
+        <ItemList items={items} />
+      )}
+    </div>
   );
 };
 
